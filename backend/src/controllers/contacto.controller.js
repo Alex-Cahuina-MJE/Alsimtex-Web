@@ -1,5 +1,15 @@
 // src/controllers/contacto.controller.js
 const logger = require('../config/logger');
+const nodemailer = require('nodemailer');
+
+// Configuración básica para pruebas (Gmail)
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'tucorreo@gmail.com', // Cambia por tu correo de envío
+    pass: 'tu_contraseña_app'   // Usa contraseña de aplicación o token
+  }
+});
 
 const enviarMensajeContacto = async (req, res) => {
   try {
@@ -28,45 +38,38 @@ const enviarMensajeContacto = async (req, res) => {
       timestamp: new Date().toISOString()
     });
 
-    // Aquí puedes agregar diferentes opciones:
 
-    // OPCIÓN 1: Guardar en base de datos
-    // const db = require('../db/database');
-    // await db.query('INSERT INTO mensajes_contacto (nombre, email, telefono, mensaje, fecha_envio) VALUES (?, ?, ?, ?, NOW())', 
-    //   [nombre, email, telefono, mensaje]);
-
-    // OPCIÓN 2: Enviar por email (necesitas configurar nodemailer)
-    // const nodemailer = require('nodemailer');
-    // const transporter = nodemailer.createTransporter({...});
-    // await transporter.sendMail({
-    //   from: email,
-    //   to: 'contacto@alsimtex.com',
-    //   subject: `Nuevo mensaje de ${nombre}`,
-    //   html: `
-    //     <h3>Nuevo mensaje de contacto</h3>
-    //     <p><strong>Nombre:</strong> ${nombre}</p>
-    //     <p><strong>Email:</strong> ${email}</p>
-    //     <p><strong>Teléfono:</strong> ${telefono || 'No proporcionado'}</p>
-    //     <p><strong>Mensaje:</strong></p>
-    //     <p>${mensaje}</p>
-    //   `
-    // });
-
-    // OPCIÓN 3: Integrar con servicio externo (EmailJS, SendGrid, etc.)
-
-    // Por ahora, solo loggear
-    console.log('=== NUEVO MENSAJE DE CONTACTO ===');
-    console.log(`Nombre: ${nombre}`);
-    console.log(`Email: ${email}`);
-    console.log(`Teléfono: ${telefono || 'No proporcionado'}`);
-    console.log(`Mensaje: ${mensaje}`);
-    console.log(`Fecha: ${new Date().toLocaleString()}`);
-    console.log('===================================');
-
-    res.status(200).json({
-      success: true,
-      message: 'Mensaje enviado exitosamente. Te contactaremos pronto.'
-    });
+    // Enviar correo
+    try {
+      logger.info('Intentando enviar correo de contacto...', {
+        from: 'ALSIMTEX Web <tucorreo@gmail.com>',
+        to: 'contacto@alsimtex.com',
+        subject: `Nuevo mensaje de contacto de ${nombre}`
+      });
+      const info = await transporter.sendMail({
+        from: 'ALSIMTEX Web <tucorreo@gmail.com>', // Cambia por tu correo de envío
+        to: 'contacto@alsimtex.com', // Cambia por el correo de destino
+        subject: `Nuevo mensaje de contacto de ${nombre}`,
+        html: `
+          <h3>Nuevo mensaje de contacto</h3>
+          <p><strong>Nombre:</strong> ${nombre}</p>
+          <p><strong>Email:</strong> ${email}</p>
+          <p><strong>Teléfono:</strong> ${telefono || 'No proporcionado'}</p>
+          <p><strong>Mensaje:</strong></p>
+          <p>${mensaje}</p>
+        `
+      });
+      logger.info('Correo enviado correctamente:', info);
+      res.status(200).json({
+        success: true,
+        message: 'Mensaje enviado exitosamente. Te contactaremos pronto.'
+      });
+    } catch (err) {
+      logger.error('Error al enviar correo de contacto:', err);
+      res.status(500).json({
+        error: 'No se pudo enviar el mensaje por correo. Intenta más tarde.'
+      });
+    }
 
   } catch (error) {
     logger.error('Error al procesar mensaje de contacto:', error);

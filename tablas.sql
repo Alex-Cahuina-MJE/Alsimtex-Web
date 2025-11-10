@@ -27,6 +27,7 @@ CREATE TABLE productos (
     precio_base NUMERIC(10,2) NOT NULL,
     categoria VARCHAR(100) NOT NULL,
     subcategoria VARCHAR(100),
+    tamano VARCHAR(50),
     imagenes TEXT[],
     imagen_principal VARCHAR(255),
     stock INTEGER DEFAULT 0,
@@ -96,6 +97,7 @@ CREATE INDEX idx_usuarios_rol ON usuarios(rol);
 CREATE INDEX idx_productos_categoria ON productos(categoria);
 CREATE INDEX idx_productos_estado ON productos(estado);
 CREATE INDEX idx_productos_stock ON productos(stock);
+CREATE INDEX idx_productos_tamano ON productos(tamano);
 
 -- Índices para pedidos
 CREATE INDEX idx_pedidos_estado ON pedidos(estado);

@@ -93,39 +93,39 @@ onUnmounted(() => {
       <div class="hero-overlay"></div>
     </div>
     <div class="hero-content">
-      <div class="brand-logo">
-        <img :src="logoImage" alt="ALSIMTEX Logo" class="logo-image" :class="{ 'is-visible': isVisible }">
+      <div class="brand-logo zoom-in-fade">
+        <img :src="logoImage" alt="ALSIMTEX Logo" class="logo-image fabric-wave" :class="{ 'is-visible': isVisible }">
       </div>
-      <h1 :class="{ 'is-visible': isVisible }">
-        <span class="text-gradient">Redefine</span> tu Descanso
+      <h1 class="fade-in-bounce" :class="{ 'is-visible': isVisible }">
+        <span class="text-gradient gradient-text-animated">Redefine</span> tu Descanso
       </h1>
-      <p class="hero-subtitle" :class="{ 'is-visible': isVisible }">
+      <p class="hero-subtitle slide-in-left" :class="{ 'is-visible': isVisible }">
         Donde el lujo encuentra el confort
       </p>
       <div class="hero-features">
-        <div class="feature-tag" :style="{ animationDelay: '0.6s' }">
-          <i class="fas fa-crown"></i> Premium
+        <div class="feature-tag fade-in-bounce" :style="{ animationDelay: '0.6s' }">
+          <i class="fas fa-crown twinkle-effect"></i> Premium
         </div>
-        <div class="feature-tag" :style="{ animationDelay: '0.8s' }">
-          <i class="fas fa-award"></i> Calidad Superior
+        <div class="feature-tag fade-in-bounce" :style="{ animationDelay: '0.8s' }">
+          <i class="fas fa-award twinkle-effect"></i> Calidad Superior
         </div>
-        <div class="feature-tag" :style="{ animationDelay: '1s' }">
-          <i class="fas fa-heart"></i> Diseño Exclusivo
+        <div class="feature-tag fade-in-bounce" :style="{ animationDelay: '1s' }">
+          <i class="fas fa-heart twinkle-effect"></i> Diseño Exclusivo
         </div>
-        <div class="feature-tag" :style="{ animationDelay: '1.2s' }">
-          <i class="fas fa-gem"></i> Elegancia
+        <div class="feature-tag fade-in-bounce" :style="{ animationDelay: '1.2s' }">
+          <i class="fas fa-gem twinkle-effect"></i> Elegancia
         </div>
-        <div class="feature-tag" :style="{ animationDelay: '1.4s' }">
-          <i class="fas fa-star"></i> Excelencia
+        <div class="feature-tag fade-in-bounce" :style="{ animationDelay: '1.4s' }">
+          <i class="fas fa-star twinkle-effect"></i> Excelencia
         </div>
       </div>
-      <div class="hero-buttons" :class="{ 'is-visible': isVisible }">
-        <router-link to="/productos" class="btn btn-primary glass-effect">
+      <div class="hero-buttons slide-in-right" :class="{ 'is-visible': isVisible }">
+        <router-link to="/productos" class="btn btn-primary glass-effect ripple-effect shimmer-effect">
           <i class="fas fa-shopping-bag"></i>
           Explorar Colección
           <span class="btn-shine"></span>
         </router-link>
-        <router-link to="/contacto" class="btn btn-outline glass-effect">
+        <router-link to="/contacto" class="btn btn-outline glass-effect ripple-effect">
           <i class="fas fa-envelope"></i>
           Contactar
         </router-link>
@@ -135,27 +135,27 @@ onUnmounted(() => {
 
   <section class="quick-actions container">
     <div class="actions-grid">
-      <div class="action-card hover-lift">
-        <i class="fas fa-shopping-cart"></i>
+      <div class="action-card hover-lift cascade-item silk-shine">
+        <i class="fas fa-shopping-cart soft-pulse"></i>
         <h3>Compra Rápida</h3>
         <p>Proceso de compra simplificado</p>
-        <router-link to="/productos" class="action-btn">
+        <router-link to="/productos" class="action-btn ripple-effect">
           <span>Comprar ahora</span>
         </router-link>
       </div>
-      <div class="action-card hover-lift">
-        <i class="fas fa-headset"></i>
+      <div class="action-card hover-lift cascade-item silk-shine">
+        <i class="fas fa-headset soft-pulse"></i>
         <h3>Soporte 24/7</h3>
         <p>Estamos aquí para ayudarte</p>
-        <router-link to="/contacto" class="action-btn">
+        <router-link to="/contacto" class="action-btn ripple-effect">
           <span>Contactar</span>
         </router-link>
       </div>
-      <div class="action-card hover-lift">
-        <i class="fas fa-gift"></i>
+      <div class="action-card hover-lift cascade-item silk-shine">
+        <i class="fas fa-gift soft-pulse"></i>
         <h3>Ofertas Especiales</h3>
         <p>Descuentos exclusivos</p>
-        <router-link to="/productos" class="action-btn">
+        <router-link to="/productos" class="action-btn ripple-effect">
           <span>Ver ofertas</span>
         </router-link>
       </div>

@@ -6,8 +6,11 @@ import LazyImage from './components/LazyImage.vue'
 import { useAuthStore } from './stores/authStore'
 
 // Importaciones de estilos
+import './style.css'
 import './assets/css/variables.css'
 import './assets/css/animations.css'
+import './assets/css/animations-advanced.css'
+import './assets/css/responsive.css'
 import './assets/css/main.css'
 import 'material-design-icons-iconfont/dist/material-design-icons.css'
 

@@ -4,7 +4,6 @@ import { useRouter } from 'vue-router'
 import { useCartStore } from '../stores/cartStore'
 import { useAuthStore } from '../stores/authStore'
 import { storeToRefs } from 'pinia'
-import logoImage from '../assets/images/logo/logo.png'
 import ShoppingCartPro from './ShoppingCartPro.vue'
 
 const router = useRouter()
@@ -72,8 +71,8 @@ const handleHomeClick = () => {
     <div class="container nav-container">
       <div class="nav-brand">
         <router-link to="/" class="brand-link" @click="closeMobileMenu">
-          <div class="logo-container">
-            <img :src="logoImage" alt="ALSIMTEX Logo" class="brand-logo">
+          <div class="brand-text-container">
+            <span class="brand-name gradient-text-animated">ALSIMTEX.SAC</span>
           </div>
         </router-link>
       </div>
@@ -262,36 +261,94 @@ const handleHomeClick = () => {
   background: transparent;
 }
 
-.logo-container {
-  height: 70px;
+.brand-text-container {
   display: flex;
   align-items: center;
   transition: all var(--transition-fast);
-  background: transparent;
+  position: relative;
 }
 
-.brand-logo {
-  height: 100%;
-  width: auto;
-  object-fit: contain;
+.brand-name {
+  font-size: 1.75rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  background: linear-gradient(45deg, #14b8a6, #f59e0b, #14b8a6);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  position: relative;
+  white-space: nowrap;
   transition: all var(--transition-fast);
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
-  background: transparent;
+  animation: gradientFlow 4s ease infinite;
+  /* Solo resplandor turquesa y dorado - SIN morado */
+  filter: drop-shadow(0 0 8px rgba(20, 184, 166, 0.3))
+          drop-shadow(0 0 15px rgba(245, 158, 11, 0.2));
 }
 
-.brand-link:hover .logo-container {
-  transform: scale(1.05);
+/* Efecto de resplandor neón */
+.brand-name::before {
+  content: 'ALSIMTEX.SAC';
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  filter: blur(15px);
+  opacity: 0.5;
+  background: linear-gradient(45deg, #14b8a6, #f59e0b, #14b8a6);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientFlow 4s ease infinite;
+}
+
+@keyframes gradientFlow {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes neonPulse {
+  0%, 100% {
+    filter: drop-shadow(0 0 8px rgba(20, 184, 166, 0.3))
+            drop-shadow(0 0 15px rgba(245, 158, 11, 0.2));
+  }
+  50% {
+    filter: drop-shadow(0 0 12px rgba(20, 184, 166, 0.5))
+            drop-shadow(0 0 25px rgba(245, 158, 11, 0.3));
+  }
+}
+
+.navbar.scrolled .brand-name {
+  font-size: 1.5rem;
+}
+
+.brand-link:hover .brand-name {
+  transform: scale(1.08);
+  animation: gradientFlow 2s ease infinite, neonPulse 1s ease-in-out infinite;
 }
 
 @media (max-width: 768px) {
-  .logo-container {
-    height: 60px;
+  .brand-name {
+    font-size: 1.4rem;
+  }
+  
+  .navbar.scrolled .brand-name {
+    font-size: 1.3rem;
   }
 }
 
 @media (max-width: 480px) {
-  .logo-container {
-    height: 50px;
+  .brand-name {
+    font-size: 1.2rem;
+  }
+  
+  .navbar.scrolled .brand-name {
+    font-size: 1.1rem;
   }
 }
 
@@ -311,6 +368,19 @@ const handleHomeClick = () => {
   border-radius: var(--border-radius-lg);
   transition: all var(--transition-fast);
   overflow: hidden;
+  /* Fondo semi-transparente para mejor visibilidad */
+  background: rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+}
+
+.navbar.scrolled .nav-link {
+  background: transparent;
+}
+
+.nav-link:hover {
+  background: rgba(20, 184, 166, 0.15);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 12px rgba(20, 184, 166, 0.2);
 }
 
 .link-content {
@@ -323,12 +393,23 @@ const handleHomeClick = () => {
   transition: all var(--transition-fast);
   position: relative;
   z-index: 1;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  /* Borde/sombra para visibilidad en fondos claros */
+  text-shadow: 
+    0 2px 4px rgba(0, 0, 0, 0.3),
+    -1px -1px 0 rgba(0, 0, 0, 0.2),
+    1px -1px 0 rgba(0, 0, 0, 0.2),
+    -1px 1px 0 rgba(0, 0, 0, 0.2),
+    1px 1px 0 rgba(0, 0, 0, 0.2);
 }
 
 .navbar.scrolled .link-content {
   color: var(--text-primary);
-  text-shadow: none;
+  text-shadow: 
+    0 1px 2px rgba(0, 0, 0, 0.1),
+    -0.5px -0.5px 0 rgba(255, 255, 255, 0.8),
+    0.5px -0.5px 0 rgba(255, 255, 255, 0.8),
+    -0.5px 0.5px 0 rgba(255, 255, 255, 0.8),
+    0.5px 0.5px 0 rgba(255, 255, 255, 0.8);
 }
 
 .link-content i {
@@ -338,6 +419,17 @@ const handleHomeClick = () => {
 
 .nav-link:hover .link-content {
   color: var(--secondary-color);
+  text-shadow: 
+    0 0 10px rgba(20, 184, 166, 0.6),
+    0 0 20px rgba(20, 184, 166, 0.4),
+    0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.navbar.scrolled .nav-link:hover .link-content {
+  text-shadow: 
+    0 0 10px rgba(20, 184, 166, 0.6),
+    0 0 20px rgba(20, 184, 166, 0.4),
+    0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .nav-link:hover .link-content i {
@@ -367,6 +459,17 @@ const handleHomeClick = () => {
 .nav-link.router-link-active .link-content {
   color: var(--secondary-color);
   font-weight: var(--font-semibold);
+  text-shadow: 
+    0 0 8px rgba(20, 184, 166, 0.5),
+    0 0 15px rgba(20, 184, 166, 0.3),
+    0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.navbar.scrolled .nav-link.router-link-active .link-content {
+  text-shadow: 
+    0 0 8px rgba(20, 184, 166, 0.5),
+    0 0 15px rgba(20, 184, 166, 0.3),
+    0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .nav-link.router-link-active .link-indicator {
@@ -670,10 +773,6 @@ const handleHomeClick = () => {
     z-index: 1001;
   }
   
-  .logo-container {
-    height: 45px;
-  }
-  
   .nav-links {
     position: fixed;
     top: 56px;
@@ -744,6 +843,9 @@ const handleHomeClick = () => {
     display: flex;
     align-items: center;
     width: 100%;
+    color: #374151;
+    /* Asegurar que se vea bien en móvil */
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
   }
 
   .link-content i {
@@ -758,10 +860,10 @@ const handleHomeClick = () => {
     transition: all 0.2s ease;
   }
 
-  .nav-link:hover .link-content i,
-  .nav-link.router-link-active .link-content i {
-    background: rgba(255, 255, 255, 0.2);
-    transform: none;
+  .nav-link:hover .link-content,
+  .nav-link.router-link-active .link-content {
+    color: white;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
   }
 
   .link-indicator {
@@ -808,10 +910,6 @@ const handleHomeClick = () => {
     height: 18px;
     font-size: 0.7rem;
   }
-
-  .logo-container {
-    height: 60px;
-  }
   
   .user-dropdown {
     right: 0;
@@ -835,10 +933,6 @@ const handleHomeClick = () => {
   .nav-container {
     padding: 0 1rem;
     gap: 0.5rem;
-  }
-  
-  .logo-container {
-    height: 40px;
   }
   
   .mobile-menu-btn {
@@ -905,10 +999,6 @@ const handleHomeClick = () => {
   
   .link-content i {
     font-size: 1.2rem;
-  }
-
-  .logo-container {
-    height: 50px;
   }
 
   .nav-action-btn {

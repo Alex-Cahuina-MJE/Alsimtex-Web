@@ -93,7 +93,8 @@ const createProducto = async(req, res) => {
             imagen_principal,
             stock,
             estado,
-            descuento
+            descuento,
+            tamano
         } = req.body;
 
         // Validaciones
@@ -107,8 +108,8 @@ const createProducto = async(req, res) => {
         const result = await pool.query(
             `INSERT INTO productos 
             (nombre, descripcion, precio_base, categoria, subcategoria, 
-             imagenes, imagen_principal, stock, estado, descuento)
-            VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
+             imagenes, imagen_principal, stock, estado, descuento, tamano)
+            VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)
             RETURNING *`, [
                 nombre,
                 descripcion || null,
@@ -119,7 +120,8 @@ const createProducto = async(req, res) => {
                 imagen_principal || null,
                 stock || 0,
                 estado !== undefined ? estado : true,
-                descuento || 0
+                descuento || 0,
+                tamano || null
             ]
         );
 
@@ -153,7 +155,8 @@ const updateProducto = async(req, res) => {
             imagen_principal,
             stock,
             estado,
-            descuento
+            descuento,
+            tamano
         } = req.body;
 
         // Verificar que el producto existe
@@ -172,8 +175,8 @@ const updateProducto = async(req, res) => {
             `UPDATE productos 
             SET nombre = $1, descripcion = $2, precio_base = $3, categoria = $4, 
                 subcategoria = $5, imagenes = $6, imagen_principal = $7,
-                stock = $8, estado = $9, descuento = $10, updated_at = CURRENT_TIMESTAMP
-            WHERE id = $11
+                stock = $8, estado = $9, descuento = $10, tamano = $11, updated_at = CURRENT_TIMESTAMP
+            WHERE id = $12
             RETURNING *`, [
                 nombre,
                 descripcion,
@@ -185,6 +188,7 @@ const updateProducto = async(req, res) => {
                 stock,
                 estado,
                 descuento || 0,
+                tamano || null,
                 id
             ]
         );
@@ -319,6 +323,36 @@ const getSubcategorias = async(req, res) => {
     }
 };
 
+// Obtener tamaños únicos
+const getTamanos = async(req, res) => {
+    try {
+        const { categoria } = req.query;
+
+        let query = 'SELECT DISTINCT tamano FROM productos WHERE tamano IS NOT NULL';
+        const params = [];
+
+        if (categoria) {
+            query += ' AND categoria = $1';
+            params.push(categoria);
+        }
+
+        query += ' ORDER BY tamano';
+
+        const result = await pool.query(query, params);
+
+        res.json({
+            success: true,
+            tamanos: result.rows.map(row => row.tamano)
+        });
+    } catch (error) {
+        console.error('Error obteniendo tamaños:', error);
+        res.status(500).json({
+            success: false,
+            error: error.message
+        });
+    }
+};
+
 module.exports = {
     getAllProductos,
     getProductoById,
@@ -327,5 +361,6 @@ module.exports = {
     deleteProducto,
     toggleEstadoProducto,
     getCategorias,
-    getSubcategorias
+    getSubcategorias,
+    getTamanos
 };

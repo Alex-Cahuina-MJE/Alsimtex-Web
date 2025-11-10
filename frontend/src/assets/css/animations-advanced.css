@@ -1,0 +1,739 @@
+/* ========================================
+   ANIMACIONES AVANZADAS - ALSIMTEX
+   Efectos elegantes para tienda de textiles
+   ======================================== */
+
+/* ========================================
+   ANIMACIONES DE ENTRADA
+   ======================================== */
+
+/* Fade In con rebote suave */
+@keyframes fadeInBounce {
+  0% {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(-5px) scale(1.02);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.fade-in-bounce {
+  animation: fadeInBounce 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Entrada deslizante desde los lados */
+@keyframes slideInFromLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInFromRight {
+  0% {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.slide-in-left {
+  animation: slideInFromLeft 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.slide-in-right {
+  animation: slideInFromRight 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Zoom elegante con fade */
+@keyframes zoomInFade {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.zoom-in-fade {
+  animation: zoomInFade 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Rotación 3D de entrada */
+@keyframes flipInX {
+  0% {
+    opacity: 0;
+    transform: perspective(400px) rotateX(90deg);
+  }
+  40% {
+    transform: perspective(400px) rotateX(-10deg);
+  }
+  70% {
+    transform: perspective(400px) rotateX(10deg);
+  }
+  100% {
+    opacity: 1;
+    transform: perspective(400px) rotateX(0deg);
+  }
+}
+
+.flip-in {
+  animation: flipInX 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* ========================================
+   ANIMACIONES DE TELA/TEXTIL
+   ======================================== */
+
+/* Efecto de tela ondeando */
+@keyframes fabricWave {
+  0%, 100% {
+    transform: translateY(0) scaleY(1);
+  }
+  25% {
+    transform: translateY(-3px) scaleY(0.98);
+  }
+  50% {
+    transform: translateY(0) scaleY(1.02);
+  }
+  75% {
+    transform: translateY(3px) scaleY(0.98);
+  }
+}
+
+.fabric-wave {
+  animation: fabricWave 3s ease-in-out infinite;
+  transform-origin: center;
+}
+
+/* Ondulación suave como sábana */
+@keyframes gentleRipple {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(20, 184, 166, 0.4),
+                0 0 0 10px rgba(20, 184, 166, 0.2),
+                0 0 0 20px rgba(20, 184, 166, 0);
+  }
+  50% {
+    box-shadow: 0 0 0 5px rgba(20, 184, 166, 0.3),
+                0 0 0 15px rgba(20, 184, 166, 0.15),
+                0 0 0 25px rgba(20, 184, 166, 0);
+  }
+}
+
+.gentle-ripple {
+  animation: gentleRipple 2s ease-in-out infinite;
+}
+
+/* Pliegue de tela */
+@keyframes fabricFold {
+  0%, 100% {
+    transform: perspective(1000px) rotateY(0deg);
+    filter: brightness(1);
+  }
+  25% {
+    transform: perspective(1000px) rotateY(-5deg);
+    filter: brightness(0.95);
+  }
+  75% {
+    transform: perspective(1000px) rotateY(5deg);
+    filter: brightness(1.05);
+  }
+}
+
+.fabric-fold {
+  animation: fabricFold 4s ease-in-out infinite;
+}
+
+/* ========================================
+   EFECTOS HOVER PREMIUM
+   ======================================== */
+
+/* Elevación suave */
+.hover-lift {
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.hover-lift:hover {
+  transform: translateY(-12px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15),
+              0 0 0 1px rgba(20, 184, 166, 0.1);
+}
+
+/* Brillo deslizante */
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.shimmer-effect {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer-effect::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  animation: shimmer 3s infinite;
+}
+
+/* Efecto de seda brillante */
+.silk-shine {
+  position: relative;
+  overflow: hidden;
+}
+
+.silk-shine::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  bottom: -50%;
+  left: -50%;
+  background: linear-gradient(
+    45deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.1) 50%,
+    transparent 70%
+  );
+  transform: rotate(45deg);
+  animation: silkShine 6s ease-in-out infinite;
+}
+
+@keyframes silkShine {
+  0%, 100% {
+    transform: translateX(-100%) rotate(45deg);
+  }
+  50% {
+    transform: translateX(100%) rotate(45deg);
+  }
+}
+
+/* ========================================
+   ANIMACIONES DE CARGA
+   ======================================== */
+
+/* Spinner de tela */
+@keyframes fabricSpin {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    transform: rotate(180deg) scale(1.1);
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+  }
+}
+
+.fabric-spinner {
+  animation: fabricSpin 2s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
+}
+
+/* Pulso suave */
+@keyframes softPulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.05);
+  }
+}
+
+.soft-pulse {
+  animation: softPulse 2s ease-in-out infinite;
+}
+
+/* Skeleton loading con efecto de tela */
+@keyframes skeletonWave {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.skeleton-loading {
+  background: linear-gradient(
+    90deg,
+    #f0f0f0 25%,
+    #e0e0e0 50%,
+    #f0f0f0 75%
+  );
+  background-size: 200% 100%;
+  animation: skeletonWave 2s ease-in-out infinite;
+}
+
+/* ========================================
+   ANIMACIONES DE SCROLL
+   ======================================== */
+
+/* Fade in al hacer scroll */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.scroll-fade-in {
+  opacity: 0;
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+/* Aparición en cascada */
+.cascade-item {
+  opacity: 0;
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.cascade-item:nth-child(1) { animation-delay: 0.1s; }
+.cascade-item:nth-child(2) { animation-delay: 0.2s; }
+.cascade-item:nth-child(3) { animation-delay: 0.3s; }
+.cascade-item:nth-child(4) { animation-delay: 0.4s; }
+.cascade-item:nth-child(5) { animation-delay: 0.5s; }
+.cascade-item:nth-child(6) { animation-delay: 0.6s; }
+
+/* ========================================
+   EFECTOS DE PARTÍCULAS FLOTANTES
+   ======================================== */
+
+/* Partículas de algodón flotando */
+@keyframes floatCotton {
+  0%, 100% {
+    transform: translateY(0) translateX(0) rotate(0deg);
+    opacity: 0.6;
+  }
+  25% {
+    transform: translateY(-20px) translateX(10px) rotate(90deg);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(-40px) translateX(-5px) rotate(180deg);
+    opacity: 0.8;
+  }
+  75% {
+    transform: translateY(-60px) translateX(15px) rotate(270deg);
+    opacity: 0.9;
+  }
+}
+
+.float-cotton {
+  animation: floatCotton 8s ease-in-out infinite;
+}
+
+/* Efecto de estrellas para productos premium */
+@keyframes twinkle {
+  0%, 100% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.twinkle-effect {
+  animation: twinkle 2s ease-in-out infinite;
+}
+
+/* ========================================
+   TRANSICIONES SUAVES
+   ======================================== */
+
+.smooth-transition {
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.smooth-transition-slow {
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.bounce-transition {
+  transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* ========================================
+   EFECTOS DE TEXTO ANIMADO
+   ======================================== */
+
+/* Texto que aparece letra por letra */
+@keyframes typeWriter {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+.typewriter {
+  overflow: hidden;
+  white-space: nowrap;
+  animation: typeWriter 3s steps(40, end);
+}
+
+/* Degradado animado en texto */
+@keyframes gradientText {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.gradient-text-animated {
+  background: linear-gradient(
+    45deg,
+    #9333ea,
+    #14b8a6,
+    #f59e0b,
+    #9333ea
+  );
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientText 5s ease infinite;
+}
+
+/* Texto con brillo */
+@keyframes textGlow {
+  0%, 100% {
+    text-shadow: 0 0 10px rgba(20, 184, 166, 0.5),
+                 0 0 20px rgba(20, 184, 166, 0.3);
+  }
+  50% {
+    text-shadow: 0 0 20px rgba(20, 184, 166, 0.8),
+                 0 0 30px rgba(20, 184, 166, 0.5),
+                 0 0 40px rgba(20, 184, 166, 0.3);
+  }
+}
+
+.text-glow {
+  animation: textGlow 2s ease-in-out infinite;
+}
+
+/* ========================================
+   ANIMACIONES DE PRODUCTOS
+   ======================================== */
+
+/* Rotación 3D suave para showcase */
+@keyframes rotate3D {
+  0% {
+    transform: perspective(1000px) rotateY(0deg);
+  }
+  100% {
+    transform: perspective(1000px) rotateY(360deg);
+  }
+}
+
+.rotate-3d {
+  animation: rotate3D 20s linear infinite;
+}
+
+/* Efecto de zoom en hover para productos */
+.product-zoom {
+  overflow: hidden;
+  position: relative;
+}
+
+.product-zoom img {
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.product-zoom:hover img {
+  transform: scale(1.15);
+}
+
+/* Badge animado de descuento */
+@keyframes badgeBounce {
+  0%, 100% {
+    transform: scale(1) rotate(-5deg);
+  }
+  50% {
+    transform: scale(1.1) rotate(5deg);
+  }
+}
+
+.discount-badge-animated {
+  animation: badgeBounce 2s ease-in-out infinite;
+}
+
+/* ========================================
+   EFECTOS DE FONDO
+   ======================================== */
+
+/* Gradiente animado de fondo */
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animated-gradient-bg {
+  background: linear-gradient(
+    -45deg,
+    #f3f4f6,
+    #e5e7eb,
+    #f9fafb,
+    #ffffff
+  );
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
+}
+
+/* Patrón de tela animado */
+@keyframes fabricPattern {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 50px 50px;
+  }
+}
+
+.fabric-pattern-animated {
+  background-image: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 10px,
+    rgba(20, 184, 166, 0.03) 10px,
+    rgba(20, 184, 166, 0.03) 20px
+  );
+  animation: fabricPattern 20s linear infinite;
+}
+
+/* ========================================
+   ANIMACIONES DE BOTONES
+   ======================================== */
+
+/* Ripple effect al hacer clic */
+@keyframes ripple {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+.ripple-effect {
+  position: relative;
+  overflow: hidden;
+}
+
+.ripple-effect::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.6);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.ripple-effect:active::after {
+  width: 200px;
+  height: 200px;
+  animation: ripple 0.6s ease-out;
+}
+
+/* Botón con efecto de latido */
+@keyframes heartbeat {
+  0%, 100% {
+    transform: scale(1);
+  }
+  10%, 30% {
+    transform: scale(0.95);
+  }
+  20%, 40% {
+    transform: scale(1.05);
+  }
+}
+
+.heartbeat-btn {
+  animation: heartbeat 1.5s ease-in-out infinite;
+}
+
+/* ========================================
+   ANIMACIONES DE NOTIFICACIONES
+   ======================================== */
+
+/* Slide in desde arriba */
+@keyframes slideInTop {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.notification-slide {
+  animation: slideInTop 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Shake para alertas */
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  10%, 30%, 50%, 70%, 90% {
+    transform: translateX(-5px);
+  }
+  20%, 40%, 60%, 80% {
+    transform: translateX(5px);
+  }
+}
+
+.shake-animation {
+  animation: shake 0.5s ease-in-out;
+}
+
+/* ========================================
+   EFECTOS DE MODAL/OVERLAY
+   ======================================== */
+
+/* Backdrop con fade */
+@keyframes backdropFade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.backdrop-fade {
+  animation: backdropFade 0.3s ease-out;
+}
+
+/* Modal con scale y fade */
+@keyframes modalAppear {
+  from {
+    opacity: 0;
+    transform: scale(0.8) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.modal-appear {
+  animation: modalAppear 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* ========================================
+   UTILIDADES DE ANIMACIÓN
+   ======================================== */
+
+/* Delays escalonados */
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+.delay-400 { animation-delay: 0.4s; }
+.delay-500 { animation-delay: 0.5s; }
+.delay-600 { animation-delay: 0.6s; }
+.delay-700 { animation-delay: 0.7s; }
+.delay-800 { animation-delay: 0.8s; }
+
+/* Duraciones */
+.duration-fast { animation-duration: 0.3s; }
+.duration-normal { animation-duration: 0.6s; }
+.duration-slow { animation-duration: 1s; }
+.duration-slower { animation-duration: 2s; }
+
+/* Iteraciones */
+.animate-once { animation-iteration-count: 1; }
+.animate-twice { animation-iteration-count: 2; }
+.animate-infinite { animation-iteration-count: infinite; }
+
+/* Estados de animación */
+.paused { animation-play-state: paused; }
+.running { animation-play-state: running; }
+
+/* ========================================
+   RESPONSIVE - Reducir animaciones en móvil
+   ======================================== */
+
+@media (max-width: 767px) {
+  /* Reducir duración en móvil */
+  .fade-in-bounce,
+  .slide-in-left,
+  .slide-in-right,
+  .zoom-in-fade {
+    animation-duration: 0.5s;
+  }
+  
+  /* Simplificar animaciones complejas */
+  .fabric-wave,
+  .fabric-fold,
+  .rotate-3d {
+    animation: none;
+  }
+}
+
+/* Respetar preferencias del usuario */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -8,6 +8,7 @@ import LoginView from '../views/LoginView.vue'
 import RegisterView from '../views/RegisterView.vue'
 import CheckoutView from '../views/CheckoutView.vue'
 import MisPedidosView from '../views/MisPedidosView.vue'
+import AnimationsShowcase from '../views/AnimationsShowcase.vue'
 import DashboardView from '../views/admin/DashboardView.vue'
 import ProductosAdminView from '../views/admin/ProductosAdminView.vue'
 import EditarProductosView from '../views/admin/EditarProductosView.vue'
@@ -44,6 +45,11 @@ const router = createRouter({
             path: '/contacto',
             name: 'contacto',
             component: ContactoView
+        },
+        {
+            path: '/animations',
+            name: 'animations',
+            component: AnimationsShowcase
         },
         {
             path: '/login',

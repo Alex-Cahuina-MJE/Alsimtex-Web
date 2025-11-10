@@ -8,7 +8,8 @@ const {
     deleteProducto,
     toggleEstadoProducto,
     getCategorias,
-    getSubcategorias
+    getSubcategorias,
+    getTamanos
 } = require('../controllers/productos.controller');
 const { authMiddleware, adminMiddleware } = require('../middleware/auth.middleware');
 
@@ -16,6 +17,7 @@ const { authMiddleware, adminMiddleware } = require('../middleware/auth.middlewa
 router.get('/', getAllProductos);
 router.get('/categorias', getCategorias);
 router.get('/subcategorias', getSubcategorias);
+router.get('/tamanos', getTamanos);
 router.get('/:id', getProductoById);
 
 // Rutas protegidas (solo admin)
