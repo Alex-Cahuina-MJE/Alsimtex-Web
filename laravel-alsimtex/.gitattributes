@@ -1,0 +1,26 @@
+* text=auto eol=lf
+
+*.blade.php diff=html
+*.css diff=css
+*.html diff=html
+*.md diff=markdown
+*.php diff=php
+
+/.github export-ignore
+CHANGELOG.md export-ignore
+.styleci.yml export-ignore
+
+# Excluir dependencias del conteo de lenguajes
+/vendor/** linguist-vendored
+/node_modules/** linguist-vendored
+
+# Excluir assets compilados por Vite (bundles JS/CSS generados)
+/public/assets/** linguist-generated
+/public/*.js linguist-generated
+/public/*.css linguist-generated
+/public/index.html linguist-generated
+
+# Excluir archivos de subida/almacenamiento
+/storage/** linguist-vendored
+/public/uploads/** linguist-vendored
+/uploads/** linguist-vendored
