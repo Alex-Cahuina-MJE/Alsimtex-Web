@@ -37,6 +37,24 @@ securityMiddleware.forEach(middleware => app.use(middleware));
 // Servir archivos estáticos (imágenes)
 app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
 
+// Ruta raíz - bienvenida
+app.get('/', (req, res) => {
+    res.json({ 
+        message: 'API de Alsimtex - Servidor funcionando correctamente',
+        version: '1.0.0',
+        endpoints: {
+            health: '/api/health',
+            auth: '/api/auth',
+            productos: '/api/productos',
+            usuarios: '/api/usuarios',
+            pedidos: '/api/pedidos',
+            contacto: '/api/contacto',
+            configuracion: '/api/configuracion'
+        },
+        timestamp: new Date().toISOString() 
+    });
+});
+
 // Ruta de prueba
 app.get('/api/health', (req, res) => {
     res.json({ message: 'Servidor funcionando correctamente', timestamp: new Date().toISOString() });
